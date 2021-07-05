@@ -16,28 +16,21 @@ for(let i=0 ; i<number.length ; i++){
 avg=sumVal/number.length;
 console.log(avg);
 // 4. Find the highest number in the array and print it to the console using console.log()
-let highestNum =0;
-for(let i=0 ;i<number.length;i++){
-    if(number[i]>number[i+1]){
-        highestNum =number[i];
-    }
-    else{
-        highestNum = number[i+1];
-        
+let highestNum =number[0];
+for(let num of number){
+    if(num > highestNum){
+        highestNum =num;
     }
 }
 console.log(highestNum);
 // 5. Find the lowest number in the array and print it to the console using console.log()
-let lowestNum;
-for(let i=0 ;i<number.length;i++){
-    if(number[i]<number[i+1]){
-        lowestNum =number[i];
+let lowestNum =number[0];
+for(let num of number){
+    if(num < lowestNum){
+        lowestNum =num;
         
     }
-    else{
-        lowestNum = number[i+1];
-        
-    }
+    
 }
 console.log(lowestNum);
 // 6. Find the even numbers in the array and print them to the console using console.log()
