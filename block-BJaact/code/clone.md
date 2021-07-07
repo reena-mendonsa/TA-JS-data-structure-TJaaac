@@ -35,7 +35,7 @@ let person = {
 let personTwo = { ...person };
 
 person.firstName = 'Arya';
-person.city = 'Navada';
+person.address.city = 'Navada';
 
 console.log(personTwo.firstName); // output 'john' Since personTwo is cloned the values are stored in a different memmory location. 
 console.log(person.firstName); // output   'Arya' Since they are at different locations changes to person is nto reflected in personTwo. 
@@ -47,8 +47,8 @@ console.log(person.address === personTwo.address); // output true .
 //Since cloning is done only at top level the object inside the person does not get cloned , so both person and personTwo point to the same memory address for the address object. 
 console.log(person.address == personTwo.address); // output true
 console.log(personTwo.address.city); // output 'San jose'
-console.log(person.address.city); // output 'San jose' 
-console.log(person.address.city == personTwo.address.city); // output true
+console.log(person.address.city); // output 'Navada' 
+console.log(person.address.city == personTwo.address.city); // output false
 ```
 
 3. Write the output with reason:
@@ -68,7 +68,7 @@ let person = {
 let personTwo = { ...person, address: { ...person.address } };
 
 person.firstName = 'Arya';
-person.city = 'Navada';
+person.adress.city = 'Navada';
 
 console.log(personTwo.firstName); // output 'John'
 console.log(person.firstName); // output 'Arya'
@@ -80,8 +80,8 @@ console.log(person.address === personTwo.address); // output false
 //Since now deep cloning is doen wherein the address object is also cloned to another memory location hence they are different.
 console.log(person.address == personTwo.address); // output false
 console.log(personTwo.address.city); // output 'San Jose'
-console.log(person.address.city); // output 'San Jose'
-console.log(person.address.city == personTwo.address.city); // output true
+console.log(person.address.city); // output 'Navada'
+console.log(person.address.city == personTwo.address.city); // output false
 ```
 
 4. Clone the `blogs` variable into a new variable named `clonedBlogs`
@@ -106,7 +106,13 @@ let blogs = [
 ];
 
 // Your code goes here
-let clonedBlogs=[...blogs];
+
+let clonedBlogs=[
+  {...blogs[0]},
+  {...blogs[1]},
+  {...blogs[2]}
+  
+  ];
 ```
 
 5. Clone the `question` variable into a new variable named `questionClone`
@@ -132,7 +138,11 @@ var questions = [
 ];
 
 // Your code goes here
-let questionClone = [{...question ,responses:[...question.responses]}];
+let questionClone = [
+  {...questions[0] ,responses:[...questions[0].responses]},
+  {...questions[0] ,responses:[...questions[0].responses]},
+  
+  ];
 ```
 
 6. Clone the `allBlogs` variable into a new variable named `allBlogsClone`
@@ -160,7 +170,14 @@ var allBlogs = {
 };
 
 // Your code goes here
-let allBlogClones = {...allBlogs,author:{...allBlogs.author},comments:[...allBlogs.comments]};
+let allBlogClones = {
+  ...allBlogs,
+  author:{...allBlogs.author},
+  comments:[
+    {...allBlogs.comments[0]},
+    {...allBlogs.comments[1]}
+  ]
+  };
 ```
 
 7. Clone the `person` variable into a new variable named `clonedPerson`
@@ -194,17 +211,14 @@ let person = [
 ];
 
 // Your code goes here
-let clonedPerson = [...person];
+let clonedPerson = JSON.parse(JSON.stringify(person));
 ```
 
 8. Write a function named `cloneObject` that accepts an object and returns the clone of the object
 
 ```js
 function cloneObject(obj) {
-  let cloneObj={};
-  cloneObj={...obj};
-  
-  return cloneObj;
+  return JSON.parse(JSON.stringify(obj));
 }
 
 // Run the test below to check your function
