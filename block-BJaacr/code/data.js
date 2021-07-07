@@ -58,7 +58,7 @@ const got = {
           description:
             "Son of Tywin Lannister - The Imp",
         },
-        {
+       {
           name: "Jaime Lannister",
           description:
             "The Kingslayer - Knight of the Kingsgaurd - Son of Tywin Lannister",
